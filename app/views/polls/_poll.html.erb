@@ -1,6 +1,19 @@
 <div class="poll-container">
-  <h1 class="text-4xl">
+  <h1 class="text-4xl font-bold">
     Paredão das Linguagens: Vote para eliminar
-    <%= @poll_options.pluck(:name).to_sentence %>
+    <%= @poll_options.pluck(:name).to_sentence(last_word_connector: " ou ") %>
   </h1>
+
+  <div class="flex flex-col gap-4 w-100">
+    <% @poll_options.each do |item| %>
+      <%= button_to "", 
+                    class: "flex-row flex items-center border border-gray-600 text-lef p-4",
+                     form_class: "w-100 flex" do %>
+        <h2 class="text-2xl font-bold text-slate-800 flex-grow">
+          <%= item.name %>
+        </h2> 
+        <%= image_tag item.photo, class: "h-19 w-16 object-contain" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
